@@ -1,0 +1,21 @@
+server:
+  port: 1234
+
+  datasource:
+    url: jdbc:mysql://localhost/tacocloud
+    username: root
+    password: root
+
+
+logging:
+#  path: logs
+  file: log-file.txt
+  level:
+    root: WARN # sets root-logging level
+    org:
+      springframework: # sets spring security logging level
+        security: DEBUG
+
+taco:
+  orders:
+    pageSize: 10
