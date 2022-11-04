@@ -32,6 +32,20 @@ public class LoadInitialData {
         TacoIngredient ingredient5 = new TacoIngredient("5", "Flour Tortilla", TacoIngredient.Type.WRAP);
         TacoIngredient ingredient6 = new TacoIngredient("6", "Tofu Tortilla", TacoIngredient.Type.PROTEIN);
 
+        TacoIngredient ingredient7 = new TacoIngredient("7", "Feta Tortilla", TacoIngredient.Type.CHEESE);
+        TacoIngredient ingredient8 = new TacoIngredient("8", "Corn Tortilla", TacoIngredient.Type.VEGGIES);
+        TacoIngredient ingredient9 = new TacoIngredient("9", "Beans Tortilla", TacoIngredient.Type.VEGGIES);
+        TacoIngredient ingredien10 = new TacoIngredient("10", "Lettuce Tortilla", TacoIngredient.Type.VEGGIES);
+        TacoIngredient ingredient11 = new TacoIngredient("11", "Flour Tortilla", TacoIngredient.Type.WRAP);
+        TacoIngredient ingredient12 = new TacoIngredient("12", "Tofu Tortilla", TacoIngredient.Type.PROTEIN);
+
+        TacoIngredient ingredient13 = new TacoIngredient("13", "Feta Tortilla", TacoIngredient.Type.CHEESE);
+        TacoIngredient ingredient14 = new TacoIngredient("14", "Corn Tortilla", TacoIngredient.Type.VEGGIES);
+        TacoIngredient ingredient15 = new TacoIngredient("15", "Beans Tortilla", TacoIngredient.Type.VEGGIES);
+        TacoIngredient ingredient16 = new TacoIngredient("16", "Lettuce Tortilla", TacoIngredient.Type.VEGGIES);
+        TacoIngredient ingredient17 = new TacoIngredient("17", "Flour Tortilla", TacoIngredient.Type.WRAP);
+        TacoIngredient ingredient18 = new TacoIngredient("18", "Tofu Tortilla", TacoIngredient.Type.PROTEIN);
+
         List<TacoIngredient> tacoIngredientList = new ArrayList<>();
         tacoIngredientList.add(ingredient1);
         tacoIngredientList.add(ingredient2);

@@ -30,6 +30,10 @@ public class Taco {
     @Size(min=1, message="You must choose at least 1 ingredient")
     private List<TacoIngredient> ingredients;
 
+    public Taco() {
+
+    }
+
     @PrePersist // before Taco is persisted
     void createdAt() {
         this.createdAt = new Date();
