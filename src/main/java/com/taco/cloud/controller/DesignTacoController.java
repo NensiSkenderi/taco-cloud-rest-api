@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,8 +43,12 @@ public class DesignTacoController {
     }
 
     @GetMapping("/all")
-    private Iterable<Taco> getAllTacos() {
-        return tacoRepository.findAll();
+    private Resources<Resource<Taco>> getAllTacos() {
+        Iterable<Taco> tacoList = tacoRepository.findAll();
+        Resources<Resource<Taco>> resources = Resources.wrap(tacoList);
+
+        resources.add(new Link("https://localhost:8080/design/all", "all-tacos")); // hardcoding like this is not good
+        return  resources;
     }
 
     @GetMapping("/recent")
