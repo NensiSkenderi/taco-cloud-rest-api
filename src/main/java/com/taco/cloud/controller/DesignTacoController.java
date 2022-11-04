@@ -32,7 +32,7 @@ public class DesignTacoController {
     @Autowired
     private OrderConfigProperties orderConfigProperties;
 
-    private JpaTacoRepository tacoRepository;
+    private final JpaTacoRepository tacoRepository;
 
     public DesignTacoController(JpaTacoRepository tacoRepository) {
         this.tacoRepository = tacoRepository;
@@ -55,17 +55,15 @@ public class DesignTacoController {
     @GetMapping("/{tacoId}") // should be same as @PathVariable
     private Taco getTacoById(@PathVariable("tacoId") Long id){
         Optional<Taco> optionalTaco = tacoRepository.findById(id);
-        if(optionalTaco.isPresent())
-            return optionalTaco.get();
-        return null; // this is not good because by returning null, the client received empty body with HTTP 200
+        // this is not good because by returning null, the client received empty body with HTTP 200
+        return optionalTaco.orElse(null);
     }
 
     //fix for above method
     @GetMapping("/taco/{id}")
     private ResponseEntity<Taco> getTacoByIdFixed(@PathVariable("id") Long id){
         Optional<Taco> optionalTaco = tacoRepository.findById(id);
-        if(optionalTaco.isPresent())
-            return ResponseEntity.ok(optionalTaco.get()); // or new ResponseEntity<>(optionalTaco.get(), HttpStatus.OK)
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        // or new ResponseEntity<>(optionalTaco.get(), HttpStatus.OK)
+        return optionalTaco.map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
     }
 }
