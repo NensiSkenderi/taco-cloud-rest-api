@@ -35,7 +35,7 @@ public class LoadInitialData {
         TacoIngredient ingredient7 = new TacoIngredient("7", "Feta Tortilla", TacoIngredient.Type.CHEESE);
         TacoIngredient ingredient8 = new TacoIngredient("8", "Corn Tortilla", TacoIngredient.Type.VEGGIES);
         TacoIngredient ingredient9 = new TacoIngredient("9", "Beans Tortilla", TacoIngredient.Type.VEGGIES);
-        TacoIngredient ingredien10 = new TacoIngredient("10", "Lettuce Tortilla", TacoIngredient.Type.VEGGIES);
+        TacoIngredient ingredient10 = new TacoIngredient("10", "Lettuce Tortilla", TacoIngredient.Type.VEGGIES);
         TacoIngredient ingredient11 = new TacoIngredient("11", "Flour Tortilla", TacoIngredient.Type.WRAP);
         TacoIngredient ingredient12 = new TacoIngredient("12", "Tofu Tortilla", TacoIngredient.Type.PROTEIN);
 
@@ -51,7 +51,9 @@ public class LoadInitialData {
         tacoIngredientList.add(ingredient2);
 
         tacoIngredientRepository.saveAll(Arrays.asList(ingredient1, ingredient2, ingredient3, ingredient4,
-                ingredient5, ingredient6));
+                ingredient5, ingredient6, ingredient7, ingredient8, ingredient9,
+                ingredient10, ingredient11, ingredient12, ingredient13, ingredient14,
+                ingredient15, ingredient16, ingredient17, ingredient18));
 
         Taco taco1 = new Taco(1L, new Date(), "yfhgfh", tacoIngredientList);
 

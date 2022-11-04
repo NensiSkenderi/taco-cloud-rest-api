@@ -12,17 +12,9 @@ public class TacoRestApiApplication {
         SpringApplication.run(TacoRestApiApplication.class, args);
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String password = "nensi";
-        String encodedPassword = passwordEncoder.encode(password);
+        String encodedPassword = passwordEncoder.encode("password");
 
-        System.out.println();
-        System.out.println("Password is         : " + password);
-        System.out.println("Encoded Password is : " + encodedPassword);
-        System.out.println();
-
-
-        boolean isPasswordMatch = passwordEncoder.matches(password, encodedPassword);
-        System.out.println("Password : " + password + "   isPasswordMatch    : " + isPasswordMatch);
+        System.out.println(encodedPassword);
 
     }
 
