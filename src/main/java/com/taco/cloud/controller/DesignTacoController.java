@@ -4,6 +4,7 @@ import com.taco.cloud.config.OrderConfigProperties;
 import com.taco.cloud.model.Taco;
 import com.taco.cloud.repo.JpaTacoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -53,7 +54,7 @@ public class DesignTacoController {
     }
 
     @GetMapping("/{tacoId}") // should be same as @PathVariable
-    private Taco getTacoById(@PathVariable("tacoId") Long id){
+    private Taco getTacoById(@PathVariable("tacoId") Long id) {
         Optional<Taco> optionalTaco = tacoRepository.findById(id);
         // this is not good because by returning null, the client received empty body with HTTP 200
         return optionalTaco.orElse(null);
@@ -61,9 +62,25 @@ public class DesignTacoController {
 
     //fix for above method
     @GetMapping("/taco/{id}")
-    private ResponseEntity<Taco> getTacoByIdFixed(@PathVariable("id") Long id){
+    private ResponseEntity<Taco> getTacoByIdFixed(@PathVariable("id") Long id) {
         Optional<Taco> optionalTaco = tacoRepository.findById(id);
         // or new ResponseEntity<>(optionalTaco.get(), HttpStatus.OK)
         return optionalTaco.map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping(consumes = "application/json") // will only handle requests with this Content-type
+    @ResponseStatus(HttpStatus.CREATED)
+    private Taco saveTaco(@RequestBody Taco taco) { // @RequestBody -> body of the request should be converted to Taco
+        // and bound to the parameter
+        return tacoRepository.save(taco);
+    }
+
+    @DeleteMapping("/{tacoId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    private void deleteTaco(@PathVariable("tacoId") Long id) {
+        try {
+            tacoRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException ignored) {
+        }
     }
 }
