@@ -55,8 +55,12 @@ public class LoadInitialData {
                 ingredient10, ingredient11, ingredient12, ingredient13, ingredient14,
                 ingredient15, ingredient16, ingredient17, ingredient18));
 
-        Taco taco1 = new Taco(1L, new Date(), "yfhgfh", tacoIngredientList);
+        Taco taco1 = new Taco(1L, new Date(), "taco1", tacoIngredientList);
+        Taco taco2 = new Taco(2L, new Date(), "taco2", tacoIngredientList);
+        Taco taco3 = new Taco(3L, new Date(), "taco3", tacoIngredientList);
+        Taco taco4 = new Taco(4L, new Date(), "taco4", tacoIngredientList);
+        Taco taco5 = new Taco(5L, new Date(), "taco5", tacoIngredientList);
 
-        tacoRepository.save(taco1);
+        tacoRepository.saveAll(Arrays.asList(taco1, taco2, taco3, taco4, taco5));
     }
 }

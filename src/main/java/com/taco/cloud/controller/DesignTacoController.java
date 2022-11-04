@@ -6,10 +6,11 @@ import com.taco.cloud.repo.JpaTacoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 
@@ -49,5 +50,22 @@ public class DesignTacoController {
 
         return tacoRepository.findAll(pageRequest).getContent();
         //to use findAll with PageRequest parameter we have to make JpaTacoRepository extend PagingAndSortingRepository
+    }
+
+    @GetMapping("/{tacoId}") // should be same as @PathVariable
+    private Taco getTacoById(@PathVariable("tacoId") Long id){
+        Optional<Taco> optionalTaco = tacoRepository.findById(id);
+        if(optionalTaco.isPresent())
+            return optionalTaco.get();
+        return null; // this is not good because by returning null, the client received empty body with HTTP 200
+    }
+
+    //fix for above method
+    @GetMapping("/taco/{id}")
+    private ResponseEntity<Taco> getTacoByIdFixed(@PathVariable("id") Long id){
+        Optional<Taco> optionalTaco = tacoRepository.findById(id);
+        if(optionalTaco.isPresent())
+            return ResponseEntity.ok(optionalTaco.get()); // or new ResponseEntity<>(optionalTaco.get(), HttpStatus.OK)
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 }
