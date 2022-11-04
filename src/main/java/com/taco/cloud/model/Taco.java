@@ -35,4 +35,11 @@ public class Taco {
         this.createdAt = new Date();
     }
 
+
+    public Taco(Long id, Date createdAt, String name, List<TacoIngredient> ingredients) {
+        this.id = id;
+        this.createdAt = createdAt;
+        this.name = name;
+        this.ingredients = ingredients;
+    }
 }
