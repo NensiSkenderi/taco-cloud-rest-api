@@ -1,7 +1,6 @@
 package com.taco.cloud.controller;
 
 import com.taco.cloud.config.OrderConfigProperties;
-import com.taco.cloud.model.Taco;
 import com.taco.cloud.model.TacoIngredient;
 import com.taco.cloud.repo.JpaTacoIngredientRepository;
 import org.springframework.data.domain.PageRequest;
